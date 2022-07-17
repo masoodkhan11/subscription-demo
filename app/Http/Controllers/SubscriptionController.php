@@ -13,9 +13,12 @@ class SubscriptionController extends Controller
     {
         $user = User::findOrFail($userId);
 
-        $website = Website::query()
-            ->whereSlug($websiteSlug)
-            ->firstOrFail();
+        $website = WebsiteCache::getWebsite($websiteSlug);
+        if (! $website) {
+            return response()->json([
+                'message' => 'Invalid Request!',
+            ], 400);
+        }
 
         $subscriptionService = new SubscriptionService($user, $website);
         $response = $subscriptionService->validate()->subscribe();
