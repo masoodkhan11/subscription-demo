@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Website extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name', 'slug',
+    ];
+
+
+    /* ----------- Relationships Start ----------- */
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'website_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'website_id');
+    }
 }
