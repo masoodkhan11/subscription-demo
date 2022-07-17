@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostPublished;
 use App\Http\Requests\PostPublishRequest;
 use App\Models\Website;
 use Illuminate\Http\Request;
@@ -20,8 +21,7 @@ class PostController extends Controller
             'description' => $request->description,
         ]);
 
-        // Generate Post Published Event
-        event()->
+        PostPublished::dispatch($post);
 
         return response()->json([
             'message' => 'Post published',
