@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('posts/{website}', [PostController::class, 'store'])->name('posts');
+Route::post('users/{user}/subscribe/{website}', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
-Route::post('subscribe/{website}', [SubscriptionController::class, 'store'])->name('subscribe');
+Route::post('posts/{website}', [PostController::class, 'publish'])->name('posts.publish');
+
