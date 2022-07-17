@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Contracts\Subscriber;
 use App\Models\User;
 use App\Models\Website;
-use Log, Exception;
 use Illuminate\Validation\ValidationException;
+use Log, Exception;
 
-class SubscriptionService 
+class SubscriptionService implements Subscriber
 {
     private $user;
     private $website;
